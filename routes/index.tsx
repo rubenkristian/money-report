@@ -1,5 +1,4 @@
 import { Head } from "$fresh/runtime.ts";
-import { Button } from "../components/Button.tsx";
 import Monthly from "../islands/Month.tsx";
 
 export default function Home() {

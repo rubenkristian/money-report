@@ -1,9 +1,9 @@
-import CreateForm from "../../islands/CreateForm.tsx";
+import CreateMonthForm from "../../islands/CreateMonthForm.tsx";
 
 export default function MonthlyCreate() {
   return (
     <>
-    <CreateForm/>
+    <CreateMonthForm/>
     </>
   );
 }

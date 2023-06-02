@@ -15,7 +15,7 @@ const MonthList = [
   "December"
 ];
 
-export default function CreateForm() {
+export default function CreateMonthForm() {
   const [year, setYear] = useState<number>(0);
   const [month, setMonth] = useState<number>(0);
 
