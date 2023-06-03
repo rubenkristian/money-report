@@ -3,33 +3,45 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import config from "./deno.json" assert { type: "json" };
-import * as $0 from "./routes/api/list/[id].ts";
-import * as $1 from "./routes/api/list/index.ts";
-import * as $2 from "./routes/api/monthly/[id].ts";
-import * as $3 from "./routes/api/monthly/index.ts";
-import * as $4 from "./routes/index.tsx";
-import * as $5 from "./routes/monthly/[id].tsx";
-import * as $6 from "./routes/monthly/create.tsx";
+import * as $0 from "./routes/api/detail/date.ts";
+import * as $1 from "./routes/api/detail/index.ts";
+import * as $2 from "./routes/api/list/index.ts";
+import * as $3 from "./routes/api/monthly/[id].ts";
+import * as $4 from "./routes/api/monthly/index.ts";
+import * as $5 from "./routes/index.tsx";
+import * as $6 from "./routes/monthly/[id].tsx";
+import * as $7 from "./routes/monthly/create.tsx";
+import * as $8 from "./routes/monthly/detail/create/[id].tsx";
+import * as $9 from "./routes/monthly/detail/edit/[id].tsx";
+import * as $10 from "./routes/monthly/detail/list/[id].tsx";
 import * as $$0 from "./islands/Counter.tsx";
 import * as $$1 from "./islands/CreateMonthForm.tsx";
 import * as $$2 from "./islands/DetailMonthly.tsx";
-import * as $$3 from "./islands/Month.tsx";
+import * as $$3 from "./islands/DetailReport.tsx";
+import * as $$4 from "./islands/List.tsx";
+import * as $$5 from "./islands/Month.tsx";
 
 const manifest = {
   routes: {
-    "./routes/api/list/[id].ts": $0,
-    "./routes/api/list/index.ts": $1,
-    "./routes/api/monthly/[id].ts": $2,
-    "./routes/api/monthly/index.ts": $3,
-    "./routes/index.tsx": $4,
-    "./routes/monthly/[id].tsx": $5,
-    "./routes/monthly/create.tsx": $6,
+    "./routes/api/detail/date.ts": $0,
+    "./routes/api/detail/index.ts": $1,
+    "./routes/api/list/index.ts": $2,
+    "./routes/api/monthly/[id].ts": $3,
+    "./routes/api/monthly/index.ts": $4,
+    "./routes/index.tsx": $5,
+    "./routes/monthly/[id].tsx": $6,
+    "./routes/monthly/create.tsx": $7,
+    "./routes/monthly/detail/create/[id].tsx": $8,
+    "./routes/monthly/detail/edit/[id].tsx": $9,
+    "./routes/monthly/detail/list/[id].tsx": $10,
   },
   islands: {
     "./islands/Counter.tsx": $$0,
     "./islands/CreateMonthForm.tsx": $$1,
     "./islands/DetailMonthly.tsx": $$2,
-    "./islands/Month.tsx": $$3,
+    "./islands/DetailReport.tsx": $$3,
+    "./islands/List.tsx": $$4,
+    "./islands/Month.tsx": $$5,
   },
   baseUrl: import.meta.url,
   config,

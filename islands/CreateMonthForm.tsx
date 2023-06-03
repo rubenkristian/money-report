@@ -24,8 +24,6 @@ export default function CreateMonthForm() {
       month: month,
       year: year,
     })});
-
-    console.log(insert);
   }
 
   return (

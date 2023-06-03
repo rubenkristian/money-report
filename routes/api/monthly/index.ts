@@ -13,13 +13,14 @@ export const handler: Handlers = {
     const data: MonthlyInterface = await req.json();
     const stms = db.prepare("SELECT * FROM report_monthly WHERE month = :month AND year = :year");
     const exists = stms.get({month: data.month, year: data.year});
-    if (exists) {
+    if (!exists) {
       const ins = db.exec("INSERT INTO report_monthly (month, year) VALUES (:month, :year)", {month: data.month, year: data.year});
       db.close();
       return Response.json({
         message: ins > 0 ? "successful to save data" : "failed to save data"
       }, {status: 201});
     } else {
+      db.close();
       return Response.json({
         message: "data exists",
       }, {status: 409});

@@ -1,5 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "https://deno.land/x/fresh@1.1.6/server.ts";
+import { Month } from "../../constants/month.ts";
+import DetailReport from "../../islands/DetailReport.tsx";
 
 interface MonthlyInterface {
   data: {
@@ -32,7 +34,17 @@ export default function MonthlyDetail({ data }: PageProps<MonthlyInterface | nul
 
   return (
     <>
-      {data.data.year}
+      <Head>
+        <title>Report ({Month[data.data.month]} {data.data.year})</title>
+      </Head>
+      <div class="flex w-full justify-center my-8">
+        <div class="text-4xl font-bold">Report ({Month[data.data.month]} {data.data.year})</div>
+      </div>
+      <div>
+        <DetailReport
+          report_monthly_id={data.data.id}
+        />
+      </div>
     </>
   );
 }

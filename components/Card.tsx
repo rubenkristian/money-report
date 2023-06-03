@@ -1,23 +1,11 @@
+import { Month } from "../constants/month.ts";
+import {Add, ListSvg, Trash} from "./Svg.tsx";
+
 interface MonthlyInterface {
   id: number;
   month: number;
   year: number;
 }
-
-const MonthList = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
-];
 
 export const Card = ({
   id,
@@ -25,14 +13,25 @@ export const Card = ({
   year,
 }: MonthlyInterface) => {
   return (
-    <a href={`/monthly/${id}`}>
-      <div class="flex flex-col w-full p-4 border rounded">
+    <a class="flex w-full border rounded justify-between" href={`/monthly/${id}`}>
+      <div class="flex flex-col p-4">
         <span>
           {year}
         </span>
         <span>
-          {MonthList[month-1]}
+          {Month[month]}
         </span>
+      </div>
+      <div class="flex p-4 items-center gap-2">
+        <a href={`/monthly/detail/create/${id}`}>
+          <Add/>
+        </a>
+        <a href={`/monthly/detail/list/${id}`}>
+          <ListSvg/>
+        </a>
+        <a href="#">
+          <Trash/>
+        </a>
       </div>
     </a>
   )
