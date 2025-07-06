@@ -1,4 +1,4 @@
-import { PageProps } from "$fresh/server.ts";
+import { PageProps } from "fresh";
 import List from "../../../../islands/List.tsx";
 
 export default function ListDetailMonthly(props: PageProps) {
@@ -6,9 +6,9 @@ export default function ListDetailMonthly(props: PageProps) {
 
   return (
     <>
-    <List
-      id={Number(id)}
-    />
+      <List
+        id={Number(id)}
+      />
     </>
   );
 }

@@ -1,9 +1,11 @@
-import { Handlers } from "$fresh/server.ts";
+import { FreshContext } from "fresh";
 import { Database } from "sqlite3";
 import { ReportInterface } from "../../../constants/interface.ts";
+import { Handlers } from "fresh/compat";
 
 export const handler: Handlers = {
-  async POST(req: Request) {
+  async POST(ctx: FreshContext) {
+    const req = ctx.req;
     const db = new Database("./base.db");
 
     const data: ReportInterface = await req.json();
@@ -17,17 +19,18 @@ export const handler: Handlers = {
         status: data.status,
         type: data.type,
         cash: data.cash,
-      }
+      },
     );
 
     db.close();
 
     return Response.json({
-      message: ins > 0 ? "successful to save data" : "failed to save data"
-    }, {status: 201});
+      message: ins > 0 ? "successful to save data" : "failed to save data",
+    }, { status: 201 });
   },
 
-  async PUT(req: Request) {
+  async PUT(ctx: FreshContext) {
+    const req = ctx.req;
     const db = new Database("./base.db");
 
     const data: ReportInterface = await req.json();
@@ -52,17 +55,18 @@ export const handler: Handlers = {
         type: data.type,
         cash: data.cash,
         id: data.id,
-      }
+      },
     );
 
     db.close();
 
     return Response.json({
-      message: ins > 0 ? "successful to save data" : "failed to save data"
-    }, {status: 201});
+      message: ins > 0 ? "successful to save data" : "failed to save data",
+    }, { status: 201 });
   },
 
-  GET(req: Request) {
+  GET(ctx: FreshContext) {
+    const req = ctx.req;
     const db = new Database("./base.db");
 
     const url = new URL(req.url);
@@ -70,25 +74,27 @@ export const handler: Handlers = {
     const month_id = url.searchParams.get("month_id");
 
     if (month_id) {
-      const stms = db.prepare("SELECT * FROM report_list WHERE report_monthly_id = :report_monthly_id");
-      const list = stms.all({report_monthly_id: month_id});
+      const stms = db.prepare(
+        "SELECT * FROM report_list WHERE report_monthly_id = :report_monthly_id",
+      );
+      const list = stms.all({ report_monthly_id: month_id });
 
       db.close();
       return Response.json({
         data: {
           list: list,
-        }
-      }, {status: 200});
+        },
+      }, { status: 200 });
     } else if (id) {
       const stms = db.prepare("SELECT * FROM report_list WHERE id = :id");
-      const data = stms.get({id: id});
+      const data = stms.get({ id: id });
 
       db.close();
       return Response.json({
-        data: data
-      }, {status: 200});
+        data: data,
+      }, { status: 200 });
     } else {
-      return Response.json({message: "Not found"}, {status: 400});
+      return Response.json({ message: "Not found" }, { status: 400 });
     }
-  }
-}
+  },
+};

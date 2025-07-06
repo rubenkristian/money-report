@@ -1,4 +1,4 @@
-import { PageProps } from "$fresh/server.ts";
+import { PageProps } from "fresh";
 import { Head } from "https://deno.land/x/fresh@1.1.6/runtime.ts";
 import DetailMonthly from "../../../../islands/DetailMonthly.tsx";
 
@@ -11,7 +11,7 @@ export default function ReportDetailCreate(props: PageProps) {
         <title>Edit</title>
       </Head>
       <div>
-        <DetailMonthly monthReportId={Number(id)} title="Create"/>
+        <DetailMonthly monthReportId={Number(id)} title="Create" />
       </div>
     </>
   );

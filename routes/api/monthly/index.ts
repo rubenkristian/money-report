@@ -1,5 +1,6 @@
-import { Handlers } from "$fresh/server.ts";
+import { FreshContext } from "fresh";
 import { Database } from "sqlite3";
+import { Handlers } from "fresh/compat";
 
 interface MonthlyInterface {
   month: number;
@@ -7,36 +8,46 @@ interface MonthlyInterface {
 }
 
 export const handler: Handlers = {
-  async POST(req: Request) {
+  async POST(ctx: FreshContext) {
+    const req = ctx.req;
     const db = new Database("./base.db");
 
     const data: MonthlyInterface = await req.json();
-    const stms = db.prepare("SELECT * FROM report_monthly WHERE month = :month AND year = :year");
-    const exists = stms.get({month: data.month, year: data.year});
+    const stms = db.prepare(
+      "SELECT * FROM report_monthly WHERE month = :month AND year = :year",
+    );
+    const exists = stms.get({ month: data.month, year: data.year });
     if (!exists) {
-      const ins = db.exec("INSERT INTO report_monthly (month, year) VALUES (:month, :year)", {month: data.month, year: data.year});
+      const ins = db.exec(
+        "INSERT INTO report_monthly (month, year) VALUES (:month, :year)",
+        { month: data.month, year: data.year },
+      );
       db.close();
       return Response.json({
-        message: ins > 0 ? "successful to save data" : "failed to save data"
-      }, {status: 201});
+        message: ins > 0 ? "successful to save data" : "failed to save data",
+      }, { status: 201 });
     } else {
       db.close();
       return Response.json({
         message: "data exists",
-      }, {status: 409});
+      }, { status: 409 });
     }
   },
 
-  GET(req: Request) {
+  GET(ctx: FreshContext) {
+    const req = ctx.req;
     const db = new Database("./base.db");
 
     const url = new URL(req.url);
-    const selectedYear = url.searchParams.get("year") ?? new Date().getFullYear();
+    const selectedYear = url.searchParams.get("year") ??
+      new Date().getFullYear();
     const year = db.prepare("SELECT year FROM report_monthly GROUP BY year");
-    const stmt = db.prepare("SELECT * FROM report_monthly WHERE year = :year ORDER BY month ASC");
-    
+    const stmt = db.prepare(
+      "SELECT * FROM report_monthly WHERE year = :year ORDER BY month ASC",
+    );
+
     const dataYears = year.all();
-    const dataMonthly = stmt.all({year: selectedYear});
+    const dataMonthly = stmt.all({ year: selectedYear });
 
     db.close();
     return Response.json({
@@ -44,7 +55,7 @@ export const handler: Handlers = {
         years: dataYears,
         monthly: dataMonthly,
         selected: selectedYear,
-      }
-    }, {status: 200});
-  }
-}
+      },
+    }, { status: 200 });
+  },
+};

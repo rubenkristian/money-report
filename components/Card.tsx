@@ -1,5 +1,5 @@
 import { Month } from "../constants/month.ts";
-import {Add, ListSvg, Trash} from "./Svg.tsx";
+import { Add, ListSvg, Trash } from "./Svg.tsx";
 
 interface MonthlyInterface {
   id: number;
@@ -13,7 +13,10 @@ export const Card = ({
   year,
 }: MonthlyInterface) => {
   return (
-    <a class="flex w-full border rounded justify-between" href={`/monthly/${id}`}>
+    <a
+      class="flex w-full border rounded justify-between"
+      href={`/monthly/${id}`}
+    >
       <div class="flex flex-col p-4">
         <span>
           {year}
@@ -24,15 +27,15 @@ export const Card = ({
       </div>
       <div class="flex p-4 items-center gap-2">
         <a href={`/monthly/detail/create/${id}`}>
-          <Add/>
+          <Add />
         </a>
         <a href={`/monthly/detail/list/${id}`}>
-          <ListSvg/>
+          <ListSvg />
         </a>
         <a href="#">
-          <Trash/>
+          <Trash />
         </a>
       </div>
     </a>
-  )
-}
+  );
+};

@@ -10,5 +10,5 @@ export const Month = [
   "September",
   "October",
   "November",
-  "December"
+  "December",
 ];

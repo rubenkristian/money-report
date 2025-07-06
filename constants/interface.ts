@@ -23,9 +23,9 @@ export interface CalculateDetailInterface {
 
 export interface ResponseDetailInterface {
   data: {
-    list: ReportDetailInterface[],
-    calculate: CalculateDetailInterface,
-  }
+    list: ReportDetailInterface[];
+    calculate: CalculateDetailInterface;
+  };
 }
 
 export interface ReportDetailDateInterface {
@@ -37,7 +37,7 @@ export interface ReportDetailDateInterface {
 
 export interface ResponseDetailDateInterface {
   data: {
-    list: ReportDetailDateInterface[],
-    calculate: CalculateDetailInterface,
-  }
+    list: ReportDetailDateInterface[];
+    calculate: CalculateDetailInterface;
+  };
 }
